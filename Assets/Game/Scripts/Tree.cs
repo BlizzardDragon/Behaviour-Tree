@@ -7,42 +7,42 @@ namespace Sample
     public sealed class Tree : MonoBehaviour
     {
         [SerializeField]
-        private Animator animator;
+        private Animator _animator;
 
         [SerializeField]
-        private int remainingResources = 10;
-        private int startResources;
+        private int _remainingResources = 9;
+        private int _startResources;
 
         public event Action<Tree> OnDeactivated;
 
         private void Start()
         {
-            this.startResources = this.remainingResources;
+            _startResources = _remainingResources;
         }
 
         public bool HasResources()
         {
-            return this.remainingResources > 0;
+            return _remainingResources > 0;
         }
 
         [Button]
         public bool TakeResource()
         {
-            if (this.remainingResources <= 0)
+            if (_remainingResources <= 0)
             {
                 return false;
             }
 
-            this.remainingResources--;
+            _remainingResources--;
 
-            if (this.remainingResources <= 0)
+            if (_remainingResources <= 0)
             {
-                this.gameObject.SetActive(false);
+                gameObject.SetActive(false);
                 OnDeactivated?.Invoke(this);
             }
             else
             {
-                this.animator.Play("Chop", -1, 0);
+                _animator.Play("Chop", -1, 0);
             }
 
             return true;
@@ -50,8 +50,8 @@ namespace Sample
 
         public void RestoreTree()
         {
-            this.remainingResources = this.startResources;
-            this.gameObject.SetActive(true);
+            _remainingResources = _startResources;
+            gameObject.SetActive(true);
         }
     }
 }

@@ -705,11 +705,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barn
       objectReference: {fileID: 0}
-    - target: {fileID: 8187666681374462052, guid: 0f4972a2262354909a5531c2642e78a1,
-        type: 3}
-      propertyPath: clearPeriod
-      value: 35
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f4972a2262354909a5531c2642e78a1, type: 3}
 --- !u!4 &341374310 stripped

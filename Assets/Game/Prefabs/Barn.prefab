@@ -97,3 +97,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceCapacity: 50
+  clearPeriod: 35

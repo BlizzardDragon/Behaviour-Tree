@@ -814,9 +814,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679b178dd02e41fbaff85986d677343a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  resourceCapacity: 5
-  animator: {fileID: 4167855360428989981}
+  _moveSpeed: 5
+  _resourceCapacity: 5
+  _animator: {fileID: 4167855360428989981}
 --- !u!1 &4167855360419474869
 GameObject:
   m_ObjectHideFlags: 0

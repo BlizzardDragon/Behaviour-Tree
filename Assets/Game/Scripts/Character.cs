@@ -7,82 +7,82 @@ namespace Sample
     public sealed class Character : MonoBehaviour
     {
         [SerializeField]
-        private float moveSpeed = 5.0f;
+        private float _moveSpeed = 5.0f;
 
         [ShowInInspector, ReadOnly]
-        private bool moveRequired;
+        private bool _moveRequired;
 
         [ShowInInspector, ReadOnly]
-        private Vector3 moveDirection;
+        private Vector3 _moveDirection;
 
         [Space]
         [SerializeField]
-        private int resourceCapacity;
+        private int _resourceCapacity = 5;
 
         [ShowInInspector, ReadOnly]
-        private int resourceAmount;
+        private int _resourceAmount;
 
         [Space]
         [SerializeField]
-        private Animator animator;
+        private Animator _animator;
 
-        private Tree choppingTree;
+        private Tree _choppingTree;
 
         [Button]
         public void Move(Vector3 direction)
         {
-            this.moveRequired = true;
-            this.moveDirection = direction;
+            _moveRequired = true;
+            _moveDirection = direction;
         }
 
         [Button]
         public void Chop(Tree tree)
         {
-            if (this.IsResourceBagFull())
+            if (IsResourceBagFull())
             {
                 return;
             }
 
-            this.choppingTree = tree;
-            this.animator.Play("Chop", -1, 0);
+            _choppingTree = tree;
+            _animator.Play("Chop", -1, 0);
         }
 
         //Called by animator
         [UsedImplicitly]
         private void OnChopAnim()
         {
-            if (this.choppingTree.TakeResource())
+            if (_choppingTree.TakeResource())
             {
-                this.resourceAmount++;
+                _resourceAmount++;
             }
         }
 
         public bool IsResourceBagFull()
         {
-            return this.resourceAmount >= this.resourceCapacity;
+            return _resourceAmount >= _resourceCapacity;
         }
 
         [Button]
         public int UnloadResources()
         {
-            var unloadResources = this.resourceAmount;
-            this.resourceAmount = 0;
+            var unloadResources = _resourceAmount;
+            _resourceAmount = 0;
             return unloadResources;
         }
 
         private void Update()
         {
-            if (this.moveRequired)
+            if (_moveRequired)
             {
-                this.animator.SetBool("IsMoving", this.moveRequired);
+                _animator.SetBool("IsMoving", _moveRequired);
                 
-                this.transform.position += this.moveSpeed * Time.deltaTime * this.moveDirection;
-                this.transform.rotation = Quaternion.LookRotation(this.moveDirection, Vector3.up);
-                this.moveRequired = false;
+                transform.position += _moveSpeed * Time.deltaTime * _moveDirection;
+                transform.rotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
+                _moveRequired = false;
             }
             else
             {
-                this.animator.SetBool("IsMoving", this.moveRequired);
+                _animator.SetBool("IsMoving", _moveRequired);
             }
         }
     }
